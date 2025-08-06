@@ -224,8 +224,7 @@ const Announcement: React.FC = () => {
                   </Box>
 
                   {/* Content */}
-                  <Box sx={{ flex: 1, minWidth: 0 }}>
-                    {/* Teacher name and subject (tight together) */}
+                  <Box sx={{ flex: 1, minWidth: 0, px: "-2px" }}>
                     <Box display="flex" alignItems="center" flexDirection="column" sx={{ width: '200px' }}>
                       <Typography 
                         variant="body2" 
@@ -237,7 +236,8 @@ const Announcement: React.FC = () => {
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
                           flexShrink: 1,
-                          minWidth: 0
+                          minWidth: 0,
+                          
                         }}
                       >
                         {announcement.teacherName}

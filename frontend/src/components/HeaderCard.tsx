@@ -1,25 +1,32 @@
-import { Card, Typography, Button, Box } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { Card, Typography, Button, Box, useMediaQuery } from '@mui/material'
+import { styled, useTheme } from '@mui/material/styles'
 
 const HeaderCard = () => {
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+  const isMedium = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     <Card sx={{ 
       display: 'flex', 
-      height: 230,
+      flexDirection: { xs: 'column', md: 'row' },
+      height: { xs: 'auto', md: 230 },
       p: 0,
       borderRadius: 2,
       overflow: 'hidden',
       margin: 0,
+      alignItems: 'stretch'
     }}>
       <Box sx={{ 
         flex: 1, 
         display: 'flex', 
         flexDirection: 'column', 
         justifyContent: 'space-between',
-        p: 4 
+        p: { xs: 2, sm: 3, md: 4 },
+        minWidth: 0
       }}>
         <Box>
-          <Typography variant="h4" fontWeight="bold" sx={{
+          <Typography variant={isSmall ? "h5" : "h4"} fontWeight="bold" sx={{
             background: 'linear-gradient(to right, #335A76, #9DDDCC)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
@@ -29,22 +36,30 @@ const HeaderCard = () => {
           }}>
             EXAMS TIME
           </Typography>
-          <Typography variant="body1" sx={{ mb: 2 }}>
+          <Typography variant="body1" sx={{ mb: 2, fontSize: { xs: '0.95rem', sm: '1rem' } }}>
             Here we are, Are you ready to fight? Don't worry, we prepared some tips to be ready for your exams.
           </Typography>
         </Box>
         
         <Box>
-          <Typography variant="body2" fontStyle="italic" sx={{ mb: 1.5 }} style={{ color: '#555' }}>
+          <Typography variant="body2" fontStyle="italic" sx={{ mb: 1.5, color: '#555', fontSize: { xs: '0.85rem', sm: '1rem' } }}>
             "Nothing happens until something moves" - Albert Einstein
           </Typography>
-          <StyledButton variant="contained" style={{ fontSize: '1rem' }}>
+          <StyledButton variant="contained" style={{ fontSize: isSmall ? '0.95rem' : '1rem' }}>
             View exams tips
           </StyledButton>
         </Box>
       </Box>
       
-      <Box sx={{ width: 700 }}>
+      <Box
+        sx={{
+          width: { xs: '100%', md: 350, lg: 400, xl: 700 },
+          height: { xs: 180, sm: 220, md: '100%' },
+          flexShrink: 0,
+          alignSelf: { xs: 'center', md: 'stretch' },
+          display: 'flex',
+        }}
+      >
         <img 
           src="./img.jpg" 
           alt="Exam illustration" 
