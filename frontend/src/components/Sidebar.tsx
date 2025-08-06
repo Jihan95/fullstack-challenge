@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, ListItemButton, Divider, Box, Typography, useMediaQuery, IconButton } from '@mui/material';
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, ListItemButton, Divider, Box, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import MenuIcon from '@mui/icons-material/Menu';
 import DashboardIcon from '@mui/icons-material/Home';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import BookIcon from '@mui/icons-material/MenuBook';
@@ -30,7 +28,6 @@ const Sidebar = ({ open, setOpen }: SidebarProps) => {
         navigate('/');
     };
 
-    const handleDrawerToggle = () => setOpen((prev) => !prev);
     const handleDrawerClose = () => setOpen(false);
 
     const items = [
