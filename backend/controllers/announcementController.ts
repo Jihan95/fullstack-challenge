@@ -158,49 +158,6 @@ class AnnouncementController {
         }
     }
 
-    static async getAnnouncementsByTeacher (req: Request, res: Response): Promise<void> {
-        try {
-            const { teacherName } = req.params;
-
-            const announcements = await Announcement
-                .find({ teacherName: new RegExp(teacherName, 'i') })
-                .sort({ createdAt: -1 });
-
-            res.json({
-                message: `Announcements by ${teacherName} retrieved successfully`,
-                data: announcements
-            });
-
-        } catch (error) {
-            if (error instanceof Error) {
-                res.status(500).json({ message: 'Internal server error', details: error.message });
-            } else {
-                res.status(500).json({ message: 'Internal server error', details: String(error) });
-            }
-        }
-    }
-
-    static async getAnnouncementsBySubject(req: Request, res: Response): Promise<void> {
-        try {
-            const { subject } = req.params;
-
-            const announcements = await Announcement
-                .find({ subject: new RegExp(subject, 'i') })
-                .sort({ createdAt: -1 });
-
-            res.json({
-                message: `Announcements for subject ${subject} retrieved successfully`,
-                data: announcements
-            });
-
-        } catch (error) {
-            if (error instanceof Error) {
-                res.status(500).json({ message: 'Internal server error', details: error.message });
-            } else {
-                res.status(500).json({ message: 'Internal server error', details: String(error) });
-            } 
-        }
-    }
 }
 
 

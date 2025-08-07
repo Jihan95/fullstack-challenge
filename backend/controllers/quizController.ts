@@ -173,75 +173,7 @@ class QuizController {
         }
     }
 
-    static async getQuizzesByTopic(req: Request, res: Response): Promise<void> {
-        try {
-            const { topic } = req.params;
-            const quizzes = await Quiz.find({ 
-                topic: { $regex: topic, $options: 'i' } 
-            }).sort({ dueDate: 1 });
-
-            res.status(200).json({
-                success: true,
-                count: quizzes.length,
-                data: quizzes
-            });
-
-        } catch (error) {
-            if (error instanceof Error) {
-                res.status(500).json({ message: 'Internal server error', details: error.message });
-            } else {
-                res.status(500).json({ message: 'Internal server error', details: String(error) });
-            }
-        }
-    }
-
-    static async getQuizzesByCourse(req: Request, res: Response): Promise<void> {
-        try {
-            const { courseName } = req.params;
-            const quizzes = await Quiz.find({ 
-            courseName: { $regex: courseName, $options: 'i' } 
-            }).sort({ dueDate: 1 });
-
-            res.status(200).json({
-            success: true,
-            count: quizzes.length,
-            data: quizzes
-            });
-        } catch (error) {
-             if (error instanceof Error) {
-                res.status(500).json({ message: 'Internal server error', details: error.message });
-            } else {
-                res.status(500).json({ message: 'Internal server error', details: String(error) });
-            }
-        }
-    }
-
-    static async getUpcomingQuizzes(req: Request, res: Response): Promise<void> {
-        try {
-            const currentDate = new Date();
-            const nextWeek = new Date();
-            nextWeek.setDate(currentDate.getDate() + 7);
-
-            const quizzes = await Quiz.find({
-            dueDate: {
-                $gte: currentDate,
-                $lte: nextWeek
-            }
-            }).sort({ dueDate: 1 });
-
-            res.status(200).json({
-            success: true,
-            count: quizzes.length,
-            data: quizzes
-            });
-        } catch (error) {
-             if (error instanceof Error) {
-                res.status(500).json({ message: 'Internal server error', details: error.message });
-            } else {
-                res.status(500).json({ message: 'Internal server error', details: String(error) });
-            }
-        }
-    }
+    
 }
 
 export default QuizController;
