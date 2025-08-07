@@ -21,14 +21,14 @@ import AnnouncementService, { Announcement as AnnouncementType } from '../servic
 import AnnouncementItem from './AnnouncementItem';
 
 // Placeholder implementation for getAvatarColor
-const getAvatarColor = (name: string): string => {
+export const getAvatarColor = (name: string): string => {
   const colors = ['#FF9F43', '#00BFA6', '#5F27CD', '#FF6B6B', '#45B7D1'];
   const index = name.length % colors.length;
   return colors[index];
 };
 
 // Helper function to get appropriate icon based on subject or role
-const getSubjectIcon = (subject: string, teacherName: string) => {
+export const getSubjectIcon = (subject: string, teacherName: string) => {
   const subjectLower = subject.toLowerCase();
   const teacherLower = teacherName.toLowerCase();
   
