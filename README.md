@@ -14,13 +14,13 @@ This repository contains a fullstack school management system with a **React + T
 
 ## Project Structure
 
-coligo-fullstack/
-├── backend/
-│ ├── controllers/
-│ ├── models/
-│ ├── routes/
-│ ├── app.ts
-│ └── server.ts
+coligo-fullstack//n
+├── backend//n
+│ ├── controllers//n
+│ ├── models//n
+│ ├── routes//n
+│ ├── app.ts/n
+│ └── server.ts/n
 ├── frontend/
 │ ├── src/
 │ │ ├── components/
