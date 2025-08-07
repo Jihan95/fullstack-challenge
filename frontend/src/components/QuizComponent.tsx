@@ -11,6 +11,7 @@ import {
   Button
 } from '@mui/material';
 import { format, parseISO } from 'date-fns';
+import QuizCard from './QuizCard';
 
 const QuizComponent: React.FC = () => {
   const [quizzes, setQuizzes] = useState<QuizType[]>([]);
@@ -58,50 +59,7 @@ const QuizComponent: React.FC = () => {
       ) : (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           {quizzes.map((quiz) => (
-            <Card key={quiz._id} variant="outlined" sx={{ borderRadius: 2 }}>
-              <CardContent>
-                <Typography  component="h3" sx={{ fontWeight: 'bold', mb: 1 }}>
-                  {quiz.title}
-                </Typography>
-                
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  Course: {quiz.courseName}
-                </Typography>
-                
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  Topic: {quiz.topic}
-                </Typography>
-                
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2, mb: 1 }}>
-                  <Typography variant="body2" color="text.secondary">
-                    Due: {format(parseISO(quiz.dueDate), 'd MMM yyyy - hh:mm a')}
-                  </Typography>
-                </Box>
-                <Button 
-                    variant="outlined" 
-                    size="small"
-                    sx={{ 
-                        textTransform: 'none',
-                        borderRadius: 2,
-                        width: '100%',
-                        color:"#2eaba9ff",
-                        fontWeight: 'bold',
-                        borderColor: '#2eaba9ff',
-                        '&:hover': {
-                        backgroundColor: '#2eaba911',
-                        borderColor: '#2eaba9',
-                        }
-                    }}
-                    >
-                    {quiz.title.toLowerCase().includes('quiz')
-                        ? 'Start Quiz'
-                        : quiz.title.toLowerCase().includes('assignment')
-                        ? 'Solve Assignment'
-                        : 'View Task'}
-                </Button>
-
-              </CardContent>
-            </Card>
+            <QuizCard quiz={ quiz }/>
           ))}
         </Box>
       )}

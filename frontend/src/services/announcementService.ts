@@ -16,11 +16,6 @@ export interface AnnouncementResponse {
   data: Announcement[];
 }
 
-export interface SingleAnnouncementResponse {
-  message: string;
-  data: Announcement;
-}
-
 const api = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
@@ -48,32 +43,6 @@ class AnnouncementService {
     }
   }
 
-  static async getAnnouncementById(id: string): Promise<SingleAnnouncementResponse> {
-    try {
-      const response = await api.get(`${ANNOUNCEMENTS_ENDPOINT}/${id}`);
-      return response.data;
-    } catch (error) {
-      throw new Error('Failed to fetch announcement');
-    }
-  }
-
-  static async getAnnouncementsByTeacher(teacherName: string): Promise<AnnouncementResponse> {
-    try {
-      const response = await api.get(`${ANNOUNCEMENTS_ENDPOINT}/teacher/${encodeURIComponent(teacherName)}`);
-      return response.data;
-    } catch (error) {
-      throw new Error('Failed to fetch teacher announcements');
-    }
-  }
-
-  static async getAnnouncementsBySubject(subject: string): Promise<AnnouncementResponse> {
-    try {
-      const response = await api.get(`/announcements/subject/${encodeURIComponent(subject)}`);
-      return response.data;
-    } catch (error) {
-      throw new Error('Failed to fetch subject announcements');
-    }
-  }
 }
 
 
